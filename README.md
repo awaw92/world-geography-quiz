@@ -1,236 +1,157 @@
-World Geography Quiz – CS50W Final Project
-Overview
+📄 World Geography Quiz
 
-World Geography Quiz is a full-stack web application built with Django, Python, and JavaScript, designed as an interactive learning platform for testing and improving world geography knowledge. Users take a quiz consisting of randomly selected questions, choose a difficulty level, and receive immediate feedback, final results, and a ranked leaderboard.
+World Geography Quiz to pełnostackowa aplikacja webowa zbudowana w Django, Pythonie oraz JavaScript. Jest to interaktywna platforma edukacyjna służąca do sprawdzania i rozwijania wiedzy z geografii świata.
 
-This project was created as the Final Capstone Project for CS50’s Web Programming with Python and JavaScript and demonstrates the integration of backend logic, database models, session management, and dynamic front-end behavior.
+Użytkownicy rozwiązują quiz składający się z losowo wybranych pytań, wybierają poziom trudności oraz otrzymują natychmiastową informację zwrotną, wynik końcowy oraz ranking graczy.
 
-Distinctiveness and Complexity
+Projekt został stworzony jako projekt końcowy CS50 Web Programming with Python and JavaScript i demonstruje integrację logiki backendowej, modeli bazy danych, zarządzania sesjami oraz dynamicznego frontendu.
 
-This project satisfies the distinctiveness and complexity requirements of the CS50W Capstone in the following concrete ways:
+🧠 Odrębność i złożoność projektu
 
-What this project is
+Projekt spełnia wymagania odrębności i złożoności projektu końcowego CS50W w następujący sposób:
 
-This application is an interactive quiz system that combines:
+📌 Charakter aplikacji
 
-persistent user score tracking,
+Aplikacja jest interaktywnym systemem quizowym, który łączy:
 
-difficulty-based content filtering,
+trwałe przechowywanie wyników użytkowników,
+filtrowanie treści według poziomu trudności,
+progresję quizu opartą o sesje,
+interaktywność po stronie klienta (JavaScript),
+ranking oparty o bazę danych.
 
-session-based quiz progression,
+W przeciwieństwie do wcześniejszych projektów kursowych skupionych na operacjach CRUD lub prostych interakcjach użytkownika, ten projekt koncentruje się na stanowej interakcji użytkownika, progresji gry oraz pętli edukacyjnej (feedback learning loop).
 
-real-time client-side interactivity,
+⚙️ Kluczowe elementy złożoności
+📌 Quiz oparty o sesje
 
-and database-driven ranking.
+Aplikacja przechowuje stan quizu w sesji Django, śledząc:
 
-Unlike earlier course projects that focused on CRUD operations, social interactions, or transactional workflows, this project emphasizes stateful user interaction, game-like progression, and educational feedback loops.
+aktualne pytanie,
+wybrane odpowiedzi,
+wynik użytkownika,
+stan zakończenia quizu.
 
-Key aspects of complexity
+Zapewnia to wieloetapowy przebieg bez konieczności logowania użytkownika.
 
-Session-Based Quiz Flow
-The application maintains quiz state entirely through Django sessions, tracking:
+📌 Poziomy trudności
 
-current question index,
+Pytania podzielone są na:
 
-selected answers,
+Łatwe
+Średnie
+Trudne
 
-accumulated score,
+Każda sesja quizu losuje do 10 pytań z wybranego poziomu trudności.
 
-and quiz completion state.
+📌 Ranking i wyniki
 
-This ensures a controlled multi-step workflow without user authentication.
+Wyniki graczy są zapisywane w modelu bazy danych PlayerScore, co umożliwia:
 
-Dynamic Difficulty Levels
-Questions are categorized into Easy, Medium, and Hard.
-Each quiz session dynamically selects and randomizes up to 10 questions from the chosen difficulty level.
+ranking według poziomu trudności,
+porównywanie wyników między graczami,
+analizę historii prób.
+📌 Interaktywność JavaScript
 
-Persistent Scoring and Rankings
-Player results are stored in a database model (PlayerScore) and ranked per difficulty level, allowing comparison between different quiz attempts.
+JavaScript odpowiada za:
 
-Client-Side Interactivity with JavaScript
-JavaScript is used to:
+wybór odpowiedzi,
+wizualne oznaczanie poprawnych i błędnych odpowiedzi,
+opóźnienie wysyłki formularza (animacje),
+poprawę UX ponad standardowe formularze Django.
+📌 Separacja logiki
 
-handle answer selection,
+Projekt jest podzielony na:
 
-visually indicate correct and incorrect answers,
+modele danych,
+logikę widoków,
+szablony HTML,
+logikę po stronie klienta (JavaScript).
+📁 Struktura projektu i pliki
+🗄️ quiz/models.py
 
-delay form submission for animations,
+Definiuje strukturę bazy danych:
 
-and improve user experience beyond standard Django form handling.
+Question – pytania quizowe, odpowiedzi, poprawna odpowiedź, poziom trudności
+PlayerScore – dane gracza, wynik, poziom trudności, data
+🧠 quiz/views.py
 
-Separation of Concerns
-The project cleanly separates:
+Główna logika aplikacji:
 
-database models,
+start_quiz – inicjalizacja quizu, ustawienie sesji
+question_view – obsługa pytań, walidacja odpowiedzi, aktualizacja wyniku
+result_view – wyświetlanie wyników i zapis do bazy
+🖥️ start.html
+formularz wejściowy do quizu
+dane gracza (imię, kraj, wiek, poziom trudności)
+walidacja danych
+responsywny interfejs
+❓ question.html
+wyświetlanie pytań quizowych
+obsługa JavaScript
+animacje odpowiedzi
+blokada wielokrotnego wyboru
+🏁 result.html
+wynik końcowy quizu
+szczegółowe podsumowanie odpowiedzi
+ranking graczy
+podświetlenie aktualnego gracza
+🌐 quiz/urls.py
 
-view logic,
+Routing aplikacji:
 
-templates,
+start quizu
+pytania
+wyniki
+⚙️ quiz/admin.py
 
-and client-side behavior.
+Rejestracja modeli w panelu administracyjnym Django
 
-Together, these elements make the project substantially more complex than earlier assignments and clearly distinct in both purpose and implementation.
+⚙️ quizproject/settings.py
 
-Project Structure and File Descriptions
-quiz/models.py
+Konfiguracja Django:
 
-Defines the database schema:
+aplikacje
+middleware
+baza danych SQLite
+ustawienia szablonów
+pliki statyczne
+🗃️ db.sqlite3
 
-Question model
-Stores quiz questions, four answer options, the correct answer index, and difficulty level.
+Baza danych zawierająca:
 
-PlayerScore model
-Stores player name, country, age, score, difficulty level, and timestamp for ranking purposes.
+przykładowe pytania
+przykładowe wyniki graczy
+📦 requirements.txt
 
-These models enable persistent quiz content and historical score tracking.
+Zależności projektu (m.in. Django)
 
-quiz/views.py
-
-Contains all core quiz logic:
-
-start_quiz
-Handles quiz initialization, player data collection, session setup, question selection, and difficulty filtering.
-
-question_view
-Manages individual quiz questions, validates answers, updates score, and tracks quiz progress.
-
-result_view
-Displays the final score, detailed answer summary, and saves the player’s result to the database only once per session.
-
-This file is the backbone of application logic and session management.
-
-quiz/templates/quiz/start.html
-
-The quiz entry point:
-
-Collects player name, country, age, and difficulty level.
-
-Includes validation and error handling for missing questions.
-
-Provides a clean, mobile-responsive UI.
-
-quiz/templates/quiz/question.html
-
-Displays individual quiz questions:
-
-Uses JavaScript to handle answer selection.
-
-Highlights correct and incorrect answers visually.
-
-Prevents multiple submissions.
-
-Uses animations for smooth user experience.
-
-Submits answers asynchronously after visual feedback.
-
-quiz/templates/quiz/result.html
-
-Displays final quiz results:
-
-Shows total score and number of questions.
-
-Provides a detailed question-by-question summary.
-
-Highlights correct and incorrect answers.
-
-Displays a leaderboard filtered by difficulty level.
-
-Highlights the current player’s result if present in the top scores.
-
-quiz/urls.py
-
-Defines URL routing for:
-
-quiz start page,
-
-question navigation,
-
-result page.
-
-quiz/admin.py
-
-Registers models with the Django admin interface, allowing quiz questions and scores to be managed via the admin panel.
-
-quizproject/settings.py
-
-Contains standard Django project configuration:
-
-installed apps,
-
-middleware,
-
-database configuration (SQLite),
-
-template settings,
-
-static files configuration.
-
-db.sqlite3
-
-Pre-populated SQLite database containing:
-
-sample quiz questions,
-
-example player scores.
-
-This allows immediate testing without manual data entry.
-
-requirements.txt
-
-Lists required Python dependencies, including Django.
-
-Setup and Running the Project
-Requirements
-
+🚀 Uruchomienie projektu
+📌 Wymagania
 Python 3.8+
-
-Django >= 3.2 and < 5.0
-
-Installation Steps
-
-Create and activate a virtual environment:
-
+Django 3.2 – 4.x
+📥 Instalacja
 python -m venv venv
-source venv/bin/activate  # macOS/Linux
-venv\Scripts\activate     # Windows
-
-
-Install dependencies:
-
+source venv/bin/activate   # macOS/Linux
+venv\Scripts\activate      # Windows
 pip install -r requirements.txt
-
-
-Apply database migrations:
-
 python manage.py migrate
-
-
-(Optional) Create an admin user:
-
 python manage.py createsuperuser
-
-
-Run the development server:
-
 python manage.py runserver
+🌐 Dostęp
+Aplikacja: http://127.0.0.1:8000/
+Panel admina: http://127.0.0.1:8000/admin/
+📌 Dodatkowe informacje
+Cała logika quizu i scoringu działa po stronie backendu (Django sessions)
+JavaScript służy tylko do poprawy interakcji użytkownika
+Aplikacja jest responsywna (mobile + desktop)
+Projekt został wykonany wyłącznie w celach edukacyjnych
+🏁 Podsumowanie
 
+Projekt przedstawia kompletną aplikację Django, łączącą:
 
-Open in browser:
+logikę backendową,
+bazę danych,
+zarządzanie sesjami,
+interaktywny frontend.
 
-Quiz application: http://127.0.0.1:8000/
-
-Admin panel: http://127.0.0.1:8000/admin/
-
-Additional Notes
-
-All quiz logic and scoring is handled server-side using Django sessions.
-
-JavaScript is used exclusively to enhance user interaction and feedback.
-
-The application is fully responsive and works on mobile and desktop devices.
-
-This project was developed solely for educational purposes as part of CS50W.
-
-Conclusion
-
-This project demonstrates a complete Django web application that integrates backend logic, persistent storage, session management, and interactive front-end behavior. Its structure, features, and implementation clearly satisfy the distinctiveness and complexity requirements of the CS50 Web Programming Final Project.
