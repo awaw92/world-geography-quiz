@@ -1,32 +1,32 @@
 📄 World Geography Quiz
 
-World Geography Quiz to pełnostackowa aplikacja webowa zbudowana w Django, Pythonie i JavaScript.
+World Geography Quiz to pełnostackowa aplikacja webowa stworzona w Django, Pythonie i JavaScript.
 
-Aplikacja pozwala użytkownikom rozwiązywać quizy z geografii świata, wybierać poziom trudności oraz śledzić wyniki w rankingu.
+Aplikacja umożliwia rozwiązywanie quizów z geografii świata, wybór poziomu trudności oraz śledzenie wyników w systemie rankingowym.
 
-Projekt został zaprojektowany jako interaktywny system edukacyjny z elementami grywalizacji, łączący backend, bazę danych oraz dynamiczny frontend.
+Projekt łączy backend, bazę danych oraz interaktywny frontend.
 
 🧠 O projekcie
 
 Aplikacja koncentruje się na:
 
-zarządzaniu stanem quizu w sesjach użytkownika
+zarządzaniu stanem quizu w sesji użytkownika
 dynamicznym generowaniu pytań
 systemie punktacji i rankingów
-interakcji w czasie rzeczywistym (JavaScript)
+interakcji użytkownika w czasie rzeczywistym
 przechowywaniu wyników w bazie danych
 
-W przeciwieństwie do klasycznych aplikacji CRUD, projekt symuluje logikę gry z progresją i feedbackiem użytkownika.
+Projekt nie jest typowym CRUD-em — działa jak system quizowy z logiką gry i progresją użytkownika.
 
 ⚙️ Kluczowe funkcjonalności
 quiz z losowo wybieranymi pytaniami
-poziomy trudności (łatwy / średni / trudny)
+poziomy trudności: łatwy / średni / trudny
 system punktacji i wynik końcowy
 ranking graczy
 zapis wyników w bazie danych
 natychmiastowy feedback po odpowiedzi
-interaktywne przejścia między pytaniami
-🧩 Logika działania
+płynna nawigacja między pytaniami
+🧩 Logika działania aplikacji
 📌 Sesje (Django)
 
 Stan quizu przechowywany jest w sesji:
@@ -35,10 +35,10 @@ aktualne pytanie
 wynik użytkownika
 postęp quizu
 📌 Generowanie pytań
-pytania losowane z bazy danych
-filtrowanie po poziomie trudności
-limit pytań na sesję
-📌 Wyniki i ranking
+pytania pobierane z bazy danych
+filtrowanie według poziomu trudności
+losowy wybór zestawu pytań
+📌 System wyników
 
 Model PlayerScore przechowuje:
 
@@ -54,8 +54,8 @@ Na tej podstawie tworzony jest ranking graczy.
 JavaScript odpowiada za:
 
 wybór odpowiedzi
-wizualne oznaczanie poprawnych i błędnych odpowiedzi
-blokadę wielokrotnego klikania
+wizualne oznaczenie poprawnych i błędnych odpowiedzi
+blokadę wielokrotnego kliknięcia
 płynne przejścia między pytaniami
 poprawę UX bez przeładowania strony
 🧠 Struktura projektu
@@ -63,8 +63,8 @@ poprawę UX bez przeładowania strony
 Question – pytania, odpowiedzi, poprawna odpowiedź, poziom trudności
 PlayerScore – wyniki graczy
 🧠 views.py
-start_quiz – inicjalizacja quizu i ustawień
-question_view – obsługa logiki pytań i wyniku
+start_quiz – inicjalizacja quizu
+question_view – logika pytań i wyników
 result_view – zapis wyniku i ekran końcowy
 🖥️ Frontend
 ekran startowy (formularz gracza)
@@ -79,9 +79,9 @@ HTML / CSS
 SQLite
 🏁 Podsumowanie
 
-Projekt pokazuje umiejętność budowy pełnej aplikacji webowej, łączącej:
+Projekt pokazuje umiejętność budowy pełnej aplikacji webowej obejmującej:
 
 backend w Django
-logikę sesji i stanu użytkownika
+zarządzanie sesją użytkownika
 bazę danych i ranking
 interaktywny frontend w JavaScript
