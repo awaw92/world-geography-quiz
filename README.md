@@ -6,7 +6,7 @@ Aplikacja działa w modelu sesyjnym i zapisuje wyniki użytkowników w bazie dan
 
 ---
 
-## 📌 Funkcjonalności
+##  Funkcjonalności
 
 - Quiz z losowo wybieranymi pytaniami  
 - Trzy poziomy trudności (łatwy / średni / trudny)  
@@ -19,7 +19,7 @@ Aplikacja działa w modelu sesyjnym i zapisuje wyniki użytkowników w bazie dan
 
 ---
 
-## 🧩 Jak działa aplikacja
+##  Jak działa aplikacja
 
 - Aplikacja wykorzystuje sesje Django do przechowywania stanu quizu  
 - Każda sesja śledzi:
@@ -34,14 +34,14 @@ Aplikacja działa w modelu sesyjnym i zapisuje wyniki użytkowników w bazie dan
 
 ---
 
-## 🗄️ Modele danych
+##  Modele danych
 
 - **Question** – pytania, odpowiedzi i poprawna odpowiedź  
 - **PlayerScore** – dane gracza oraz wynik quizu  
 
 ---
 
-## 🧠 Logika backendu
+##  Logika backendu
 
 - `start_quiz` – inicjalizacja quizu i ustawień gracza  
 - `question_view` – obsługa pytań i aktualizacja wyniku  
@@ -49,7 +49,7 @@ Aplikacja działa w modelu sesyjnym i zapisuje wyniki użytkowników w bazie dan
 
 ---
 
-## 🖥️ Frontend
+##  Frontend
 
 - ekran startowy (formularz gracza i wybór trudności)  
 - widok pytań z interaktywnymi odpowiedziami  
@@ -58,7 +58,7 @@ Aplikacja działa w modelu sesyjnym i zapisuje wyniki użytkowników w bazie dan
 
 ---
 
-## 🛠️ Technologie
+##  Technologie
 
 - Python  
 - Django  
@@ -69,7 +69,7 @@ Aplikacja działa w modelu sesyjnym i zapisuje wyniki użytkowników w bazie dan
 
 ---
 
-## 🚀 Architektura
+##  Architektura
 
 - Django + sesje do zarządzania stanem quizu  
 - Model oparty na bazie danych (pytania + wyniki)  
